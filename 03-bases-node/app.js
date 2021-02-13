@@ -1,8 +1,7 @@
+const { crearArchivo } = require('./helpers/multiplicar');
 console.clear();
-let numerotabla = 5;
-console.log("==================");
-console.log("TABLA DEL:" + numerotabla);
-console.log("==================");
-for (let i = 1; i <= 10; i++) {
-    console.log(`5 x ${i} = ${numerotabla * i}`);
-}
+
+
+let numerotabla = 3;
+
+crearArchivo(numerotabla).then(msg => console.log(msg)).catch(err => console.log(err));
