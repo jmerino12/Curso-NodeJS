@@ -1,22 +1,6 @@
-const { option, boolean } = require('yargs');
 const { crearArchivo } = require('./helpers/multiplicar');
-const argv = require('yargs')
-    .option('b', {
-        alias: 'base',
-        type: 'number',
-        demandOption: true
-    }).check((argv, options) => {
-        if (isNaN(argv.b)) {
-            throw 'La  base tiene que se un numero';
-        } else {
-            return true;
-        }
-    }).option('l', {
-        alias: 'listar',
-        type: boolean,
-        default: false,
-        describe: 'Comando para listar'
-    }).argv;
+const argv = require('./config/yargs');
+const colors = require('colors');
 
 console.clear();
 
@@ -31,5 +15,5 @@ console.log(base);
 let numerotabla = 3;*/
 
 crearArchivo(argv.b, argv.l)
-    .then(msg => console.log(msg))
+    .then(msg => console.log(msg.rainbow))
     .catch(err => console.log(err));
