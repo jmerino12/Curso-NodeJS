@@ -12,6 +12,17 @@ const argv = require('yargs')
         } else {
             return true;
         }
+    }).option('h', {
+        alias: 'hasta',
+        type: 'number',
+        describe: 'Hata donde se va a multiplicar la baser',
+        default: 10
+    }).check((argv, options) => {
+        if (isNaN(argv.h)) {
+            throw 'La  base tiene que se un numero';
+        } else {
+            return true;
+        }
     }).option('l', {
         alias: 'listar',
         type: boolean,

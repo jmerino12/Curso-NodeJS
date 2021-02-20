@@ -14,6 +14,6 @@ const [, base = 5] = arg3.split('=');
 console.log(base);
 let numerotabla = 3;*/
 
-crearArchivo(argv.b, argv.l)
+crearArchivo(argv.b, argv.h, argv.l)
     .then(msg => console.log(msg.rainbow))
     .catch(err => console.log(err));
