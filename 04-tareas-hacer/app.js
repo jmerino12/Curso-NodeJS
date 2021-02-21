@@ -11,7 +11,6 @@ const main = async () => {
     let opt = ""
     const tareas = new Tareas();
     do {
-
         opt = await inquirerMenu();
         switch (opt) {
             case "1":
