@@ -13,7 +13,7 @@ const main = async () => {
     const tareas = new Tareas();
     const tareasBD = leerBD();
     if (tareasBD) {
-
+        tareas.cargarTareaFromArray(tareasBD);
     }
     do {
         opt = await inquirerMenu();
@@ -23,7 +23,7 @@ const main = async () => {
                 tareas.crearTarea(desc);
                 break;
             case "2":
-                console.log(tareas.listadoArr)
+                tareas.listadoCompleto()
                 break;
             case "3":
                 break;
@@ -34,7 +34,7 @@ const main = async () => {
             case "6":
                 break;
         }
-        //guardarDB(tareas.listadoArr);
+        guardarDB(tareas.listadoArr);
         await pausa()
     } while (opt !== "0");
     //pausa();
