@@ -23,11 +23,13 @@ const main = async () => {
                 tareas.crearTarea(desc);
                 break;
             case "2":
-                tareas.listadoCompleto()
+                tareas.listadoCompleto();
                 break;
             case "3":
+                tareas.listarTareasPendientesCompletadas(true)
                 break;
             case "4":
+                tareas.listarTareasPendientesCompletadas(false)
                 break;
             case "5":
                 break;

@@ -37,5 +37,26 @@ class Tareas {
         });
     }
 
+    listarTareasPendientesCompletadas(completadas = true) {
+        console.log("")
+        let contador = 0
+        this.listadoArr.forEach((tarea) => {
+            const { descripcion, completadoEn } = tarea;
+            const estado = (completadoEn) ? "Completada".green : "Pendiente".red;
+            if (completadas == true) {
+                if (completadoEn) {
+                    contador += 1;
+                    console.log(`${contador.toString().green}. ${descripcion} :: ${completadoEn.toString()}`)
+                }
+            } else if (!completadoEn) {
+                contador += 1;
+                console.log(`${contador.toString().green}. ${descripcion} :: ${completadoEn}`)
+
+            }
+
+        });
+    }
+
+
 }
 module.exports = Tareas;

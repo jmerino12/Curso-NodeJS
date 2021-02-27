@@ -7,7 +7,7 @@ class Tarea {
     constructor(descripcion) {
         this.id = uuidv4();
         this.descripcion = descripcion;
-        this.completadoEn = null
+        this.completadoEn = null;
     }
 
 }
