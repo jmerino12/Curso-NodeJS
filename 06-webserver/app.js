@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const hbs = require('hbs');
-require('dotenv')
+require('dotenv').config()
 
 const port = process.env.PORT
 
@@ -45,5 +45,5 @@ app.get('*', function (req, res) {
 })
 
 app.listen(port, () => {
-    console.log('Example port ', port)
+    console.log(`Example app listening at http://localhost:${port}`)
 })
