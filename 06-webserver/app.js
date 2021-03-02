@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
+var hbs = require('hbs');
 
+
+hbs.registerPartials(__dirname + '/views/partials');
 
 app.set('view engine', 'hbs')
 
@@ -17,11 +20,17 @@ app.get('/', function (req, res) {
 
 
 app.get('/generic', function (req, res) {
-    res.sendFile(__dirname + '/public/generic.html')
+    res.render('generic', {
+        nombre: "Jonathan Meriño",
+        titulo: "Curso node"
+    });
 })
 
 app.get('/elements', function (req, res) {
-    res.sendFile(__dirname + '/public/elements.html')
+    res.render('elements', {
+        nombre: "Jonathan Meriño",
+        titulo: "Curso node"
+    });
 })
 
 
