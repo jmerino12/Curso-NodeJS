@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
-var hbs = require('hbs');
+const hbs = require('hbs');
+require('dotenv')
 
+const port = process.env.PORT
 
 hbs.registerPartials(__dirname + '/views/partials');
 
@@ -42,4 +44,6 @@ app.get('*', function (req, res) {
     res.sendFile(__dirname + '/public/404.html')
 })
 
-app.listen(8080)
+app.listen(port, () => {
+    console.log('Example port ', port)
+})
