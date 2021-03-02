@@ -1,8 +1,19 @@
 const express = require('express')
 const app = express()
 
+
+app.set('view engine', 'hbs')
+
+
 //Middleware
 app.use(express.static('public'))
+
+app.get('/', function (req, res) {
+    res.render('home', {
+        nombre: "Jonathan Meriño",
+        titulo: "Curso node"
+    });
+})
 
 
 app.get('/generic', function (req, res) {
