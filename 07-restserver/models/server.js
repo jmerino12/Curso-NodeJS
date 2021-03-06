@@ -13,6 +13,7 @@ class Server{
 
     middlwares(){
         this.app.use(cors());
+        this.app.use(express.json())           //Lecutra y paseo del body
         this.app.use(express.static('public'));
     }
 

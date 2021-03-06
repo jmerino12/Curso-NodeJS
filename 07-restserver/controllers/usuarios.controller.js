@@ -15,6 +15,15 @@ const usuariosPUT = (req, res) => {
     });
   }
 
+  const usuariosPOST = (req, res) => {
+    const {nombre,edad} = req.body;
+    res.json({
+        status:"ok",
+        msg: "post api - controller",
+        nombre
+    });
+  }
+
 const usuariosDELETE = (req, res) => {
     res.json({
         status:"ok",
@@ -25,5 +34,6 @@ const usuariosDELETE = (req, res) => {
 module.exports = {
     usuariosGET,
     usuariosPUT,
-    usuariosDELETE
+    usuariosDELETE,
+    usuariosPOST
 }
