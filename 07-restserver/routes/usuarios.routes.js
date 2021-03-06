@@ -4,10 +4,10 @@ const router = Router();
 
 router.get('/', usuariosGET);
 
-router.put('/',usuariosPUT );
+router.put('/:id',usuariosPUT );
 
 router.post('/',usuariosPOST );
 
-router.delete('/', usuariosDELETE);
+router.delete('/:id', usuariosDELETE);
 
 module.exports = router;
