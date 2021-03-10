@@ -1,10 +1,11 @@
-const {request, response} = require('express')
+const { request, response } = require('express');
+const Usuario = require('../models/usuario');
 
 
 const usuariosGET = (req = request, res = response) => {
-    const {q,nombre = "Non",apikey, page = 1, limit} = req.query
+    const { q, nombre = "Non", apikey, page = 1, limit } = req.query
     res.json({
-        status:"ok",
+        status: "ok",
         msg: "get api - controller",
         q,
         nombre,
@@ -15,31 +16,35 @@ const usuariosGET = (req = request, res = response) => {
 }
 
 const usuariosPUT = (req = request, res = response) => {
-    const {id} =req.params
+    const { id } = req.params
     res.json({
-        status:"ok",
+        status: "ok",
         msg: "put api - controller",
         id
     });
-  }
+}
 
-  const usuariosPOST = (req = request, res = response) => {
-    const {nombre,edad} = req.body;
+const usuariosPOST = async (req = request, res = response) => {
+    //const { nombre, edad } = req.body;
+    const body = req.body;
+    const usuario = new Usuario(body);
+    await usuario.save();
+
     res.json({
-        status:"ok",
+        status: "ok",
         msg: "post api - controller",
-        nombre
+        usuario
     });
-  }
+}
 
 const usuariosDELETE = (req = request, res = response) => {
-    const {id} =req.params
+    const { id } = req.params
     res.json({
-        status:"ok",
+        status: "ok",
         msg: "delete api - controller",
         id
     });
-  }
+}
 
 module.exports = {
     usuariosGET,
