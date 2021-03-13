@@ -16,12 +16,21 @@ const usuariosGET = (req = request, res = response) => {
     });
 }
 
-const usuariosPUT = (req = request, res = response) => {
-    const { id } = req.params
+const usuariosPUT = async (req = request, res = response) => {
+    const { id } = req.params;
+    const { password, google, correo, ...resto } = req.body;
+    //Validar contra base de datos
+    if (password) {
+        const salt = bcrypt.genSaltSync();
+        resto.password = bcrypt.hashSync(password, salt);
+    }
+    const usuario = await Usuario.findOneAndUpdate(id, resto);
+
+
     res.json({
         status: "ok",
         msg: "put api - controller",
-        id
+        usuario
     });
 }
 
@@ -31,7 +40,6 @@ const usuariosPOST = async (req = request, res = response) => {
     const usuario = new Usuario({
         nombre, correo, password, rol
     });
-    //Verificar si el correo existe
 
     //Encriptar contraseña
     const salt = bcrypt.genSaltSync();
