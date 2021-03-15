@@ -48,11 +48,33 @@ const login = async (req, res = response) => {
 const googleSingIng = async (req, res = response) => {
     const { id_token } = req.body;
     try {
-        const googleUser = await googleVerify(id_token);
+        const { correo, nombre, img } = await googleVerify(id_token);
+        let usuario = await Usuario.findOne({ correo });
+        if (!usuario) {
+            //Tengo que crearlo
+            const data = {
+                nombre,
+                correo,
+                img,
+                password: ':P',
+                google: true
+            };
+            usuario = new Usuario(data);
+            await usuario.save();
+        }
+
+        if (!usuario.estado) {
+            res.status(401).json({
+                msg: 'Hable con el administrador, usuario bloqueado'
+            });
+        }
+
+        const token = await generarJWT(usuario.id);
+
 
         return res.json({
-            msg: "Ok",
-            googleUser
+            usuario,
+            token
         });
     } catch (error) {
         console.log(error)
