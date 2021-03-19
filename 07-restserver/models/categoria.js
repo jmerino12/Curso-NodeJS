@@ -12,9 +12,14 @@ const CategoriaSchema = Schema({
     },
     usuario: {
         type: Schema.Types.ObjectId,
-        ref: 'Usario',
+        ref: 'Usuario',
         required: [true, 'El usuario de creacion es obligatorio']
     }
 });
+
+CategoriaSchema.methods.toJSON = function () {
+    const { __v, estado, ...data } = this.toObject();
+    return data;
+}
 
 module.exports = model('Categoria', CategoriaSchema);
