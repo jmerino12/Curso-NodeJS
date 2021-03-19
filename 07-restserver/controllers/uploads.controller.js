@@ -10,11 +10,18 @@ const cargarArchivo = async (req, res = response) => {
     if (!req.files.archivo) {
         return res.status(400).json({ msg: 'No hay archivos en la peticion' });
     }
-    const nombre = await subirArchivo(req.files);
+    try {
+        const nombre = await subirArchivo(req.files);
+        res.status(400).json({
+            nombre
+        });
+    } catch (error) {
+        res.status(400).json({
+            error
+        });
+    }
 
-    res.json({
-        nombre
-    })
+
 }
 
 module.exports = {
