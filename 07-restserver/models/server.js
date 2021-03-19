@@ -33,7 +33,7 @@ class Server {
         this.app.use(this.paths.authPath, require('../routes/auth.routes'));
         this.app.use(this.paths.usuariosPath, require('../routes/usuarios.routes'));
         this.app.use(this.paths.categoriasPath, require('../routes/categorias.routes'));
-        this.app.use(this.paths.productosPath, require('../routes/productos.routes'))
+        this.app.use(this.paths.productosPath, require('../routes/productos.routes'));
     }
 
     lister() {
