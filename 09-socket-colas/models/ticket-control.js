@@ -23,7 +23,7 @@ class TicketControl {
             ultimo: this.ultimo,
             hoy: this.hoy,
             tickets: this.tickets,
-            ultimos4: this.ultimos4 = []
+            ultimos4: this.ultimos4
         }
     }
 
@@ -52,17 +52,22 @@ class TicketControl {
     }
 
     atenderTicket(escritorio) {
+        // No tenemos tickets
         if (this.tickets.length === 0) {
             return null;
         }
-        const ticket = this.tickets.shift();//this.tickets[0];
+
+        const ticket = this.tickets.shift(); // this.tickets[0];
         ticket.escritorio = escritorio;
+
         this.ultimos4.unshift(ticket);
 
         if (this.ultimos4.length > 4) {
             this.ultimos4.splice(-1, 1);
         }
+
         this.guardardb();
+
         return ticket;
     }
 }
