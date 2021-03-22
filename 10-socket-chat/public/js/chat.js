@@ -45,8 +45,8 @@ const conectarSocket = async () => {
     socket.on('connect', () => { console.log('Sockets online') });
     socket.on('disconnect', () => { console.log('Sockets offline') });
 
-    socket.on('recibir-mensajes', () => {
-
+    socket.on('recibir-mensajes', (payload) => {
+        console.log(payload);
     });
 
     socket.on('usuarios-activos', (payload) => {
@@ -74,6 +74,21 @@ const dibujarUsuario = (usuarios = []) => {
     });
     ulUsuarios.innerHTML = userHtml;
 }
+
+txtMensaje.addEventListener('keyup', ({ keyCode }) => {
+    const mensaje = txtMensaje.value;
+    const uid = txtUid.value;
+
+    if (keyCode !== 13) {
+        return;
+    }
+    if (mensaje.length === 0) {
+        return;
+    }
+
+    socket.emit('enviar-mensaje', { mensaje, uid });
+    txtMensaje.value = '';
+})
 
 const main = async () => {
     const token = await validarJTW();
