@@ -1,6 +1,9 @@
 import express, { Application } from 'express';
 import userRoutes from "../routes/usuario.route";
 import cors from "cors"
+import db from '../db/connection';
+
+//Primero importaciones de 3eros, luego la de nosotros y si fuera de node de primero
 class Server {
     private app: Application;
     private port: String;
@@ -12,12 +15,22 @@ class Server {
         this.app = express();
         this.port = process.env.PORT || '8000';
 
-
+        this.dbConnection();
         this.middlewares();
         this.routes();
     }
 
     //TODO: Conectar base de datos
+    async dbConnection() {
+        try {
+            await db.authenticate();
+            console.log('db online');
+        } catch (error) {
+            console.log(error);
+            throw new Error(`No se puedo inicializar ${error} `)
+        }
+    }
+
 
     middlewares() {
         //CORS
